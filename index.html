@@ -108,8 +108,12 @@
             modal.style.display = 'none';
             overlay.style.display = 'none';
             container.style.display = 'block';
-            audio.currentTime = 19;
+            audio.currentTime = 62;
             audio.play();
+
+            setTimeout(function() {
+                audio.pause();
+            }, 15000); // Stop the audio after 15 seconds
         });
     </script>
 </body>
