@@ -12,6 +12,7 @@
             background-color: #f8f8f8;
         }
         .container {
+            display: none;
             background: white;
             padding: 20px;
             border-radius: 10px;
@@ -39,9 +40,35 @@
             max-width: 45%;
             height: auto;
         }
+        #modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #modal-content h2 {
+            margin: 0 0 20px;
+        }
     </style>
 </head>
 <body>
+    <div id="modal">
+        <div id="modal-content">
+            <h2>50 + 60 = Je to v prdeli</h2>
+            <button id="okButton">OK</button>
+        </div>
+    </div>
     <div class="container">
         <h1>Michal a Jirka tě srdečně zvou na společnou oslavu narozenin!</h1>
         <p>Přijď s námi oslavit půl století a šest dekád života netradičně! Čeká nás pěší výlet o délce přibližně 15 km, na jehož konci proběhne velká oslava s přespáním do druhého dne.</p>
@@ -57,16 +84,20 @@
             <p><strong>Dress code:</strong> Pohodlné oblečení a pevná obuv na pochod.</p>
         </div>
         <p>Dej nám prosím vědět, zda dorazíš, z důvodu rezervace ubytování.<br><br>Pozvání samozřejmě platí i pro tvoji drahou polovičku.<br>Těšíme se na Tebe!</p>
-    <p style="font-size: 12px; margin-top: 30px;">Pokud se z nějakého důvodu nechceš nebo nemůžeš zúčastnit společného pochodu, můžeš dorazit přímo na oslavu do Karlova.</p>
-</div>
+        <p style="font-size: 12px; margin-top: 30px;">Pokud se z nějakého důvodu nechceš nebo nemůžeš zúčastnit společného pochodu, můžeš dorazit přímo na oslavu do Karlova.</p>
+    </div>
     <audio id="audioPlayer" src="padesat.mp3"></audio>
-
     <script>
-        window.onload = function() {
+        document.getElementById('okButton').addEventListener('click', function() {
+            var modal = document.getElementById('modal');
             var audio = document.getElementById('audioPlayer');
+            var container = document.querySelector('.container');
+
+            modal.style.display = 'none';
+            container.style.display = 'block';
             audio.currentTime = 19;
             audio.play();
-        };
+        });
     </script>
 </body>
 </html>
