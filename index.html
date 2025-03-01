@@ -42,7 +42,6 @@
     </style>
 </head>
 <body>
-    <div id="videoContainer" class="hidden-video"></div>
     <div class="container">
         <h1>Michal a Jirka tě srdečně zvou na společnou oslavu narozenin!</h1>
         <p>Přijď s námi oslavit půl století a šest dekád života netradičně! Čeká nás pěší výlet o délce přibližně 15 km, na jehož konci proběhne velká oslava s přespáním do druhého dne.</p>
@@ -60,39 +59,14 @@
         <p>Dej nám prosím vědět, zda dorazíš, z důvodu rezervace ubytování.<br><br>Pozvání samozřejmě platí i pro tvoji drahou polovičku.<br>Těšíme se na Tebe!</p>
     <p style="font-size: 12px; margin-top: 30px;">Pokud se z nějakého důvodu nechceš nebo nemůžeš zúčastnit společného pochodu, můžeš dorazit přímo na oslavu do Karlova.</p>
 </div>
+    <audio id="audioPlayer" src="padesat.mp3"></audio>
+
     <script>
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('videoContainer', {
-                height: '390',
-                width: '640',
-                videoId: 'VoDD9tesPgU',
-                playerVars: {
-                    'autoplay': 1,
-                    'start': 30
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) {
-                event.target.seekTo(30);
-                event.target.playVideo();
-            }
-        }
-    </script> 
+        window.onload = function() {
+            var audio = document.getElementById('audioPlayer');
+            audio.currentTime = 19;
+            audio.play();
+        };
+    </script>
 </body>
 </html>
