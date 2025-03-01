@@ -66,6 +66,7 @@
     <p style="font-size: 12px; margin-top: 30px;">Pokud se z nějakého důvodu nechceš nebo nemůžeš zúčastnit společného pochodu, můžeš dorazit přímo na oslavu do Karlova.</p>
 </div>
     <script>
+        // YouTube API Loader
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -79,10 +80,31 @@
                 videoId: 'hQi23HxHG58',
                 playerVars: {
                     'autoplay': 1,
-                    'start': 19
+                    'start': 30
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
                 }
             });
         }
-    </script></script>
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        var done = false;
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING && !done) {
+                setTimeout(stopVideo, 60000); // Přehrávání po dobu 60 sekund
+                done = true;
+            }
+        }
+
+        function stopVideo() {
+            player.stopVideo();
+            done = false; // Resetování pro další přehrání
+       }
+    </script> 
 </body>
 </html>
